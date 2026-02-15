@@ -202,7 +202,21 @@ body {
 
 .experience-role {
     color: var(--text-light);
-    margin: 0;
+    font-weight: 600;
+    margin: 0.25rem 0;
+}
+
+.experience-description {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin: 0.5rem 0 0 0;
+    line-height: 1.5;
+}
+
+.experience-location {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    margin: 0.25rem 0 0 0;
 }
 
 .education-item strong {
