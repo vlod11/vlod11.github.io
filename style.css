@@ -163,13 +163,56 @@ body {
     margin-bottom: 1.5rem;
 }
 
+.experience,
+.education,
 .skills {
     margin-top: 2rem;
 }
 
+.experience h3,
+.education h3,
 .skills h3 {
     font-size: 1.25rem;
     margin-bottom: 1rem;
+}
+
+.experience-item,
+.education-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.experience-item:last-child,
+.education-item:last-child {
+    border-bottom: none;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.experience-duration {
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+.experience-role {
+    color: var(--text-light);
+    margin: 0;
+}
+
+.education-item strong {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.education-item p {
+    color: var(--text-light);
+    margin: 0;
 }
 
 .skill-tags {
