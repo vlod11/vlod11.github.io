@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="3yhUY355buZc9wuOCG8EdWqRfOgx8C0fpKB5XeNbK6s" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Setup Services — Your Personal AI Assistant, Running 24/7</title>
+    <meta name="description" content="Get OpenClaw set up and running for you. A personal AI assistant on your phone — WhatsApp, Telegram, or Signal. Managed setup, no technical skills needed.">
+    <meta name="keywords" content="OpenClaw setup, AI assistant, personal AI, WhatsApp AI, Telegram bot, Claude AI, business automation">
+    <meta name="author" content="Vladyslav Odynets">
+    <meta property="og:title" content="OpenClaw Setup Services — Your Personal AI Assistant">
+    <meta property="og:description" content="Get a personal AI assistant running on your phone in 48 hours. WhatsApp, Telegram, Signal. No technical skills required.">
+    <meta property="og:url" content="https://vlod11.github.io/openclaw-setup/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@Vlod11C">
+    <link rel="canonical" href="https://vlod11.github.io/openclaw-setup/">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #e74c3c;
+            --primary-dark: #c0392b;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --text: #e8e8e8;
+            --text-muted: #a0a0b0;
+            --surface: #1e1e32;
+            --surface-light: #252540;
+            --accent: #f39c12;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+        /* Nav */
+        .nav {
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: var(--text); text-decoration: none; font-weight: 700; font-size: 1.1rem; }
+        .logo span { color: var(--primary); }
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .nav-cta:hover { background: var(--primary-dark); }
+
+        /* Hero */
+        .hero {
+            padding: 160px 0 80px;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(231, 76, 60, 0.15);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        .hero h1 em {
+            font-style: normal;
+            color: var(--primary);
+        }
+        .hero-sub {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        .hero-cta {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+        .hero-cta:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        .hero-note {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Sections */
+        .section { padding: 80px 0; }
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* What you get */
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .feature {
+            background: var(--surface);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 28px;
+        }
+        .feature-icon { font-size: 1.5rem; margin-bottom: 12px; }
+        .feature h3 { font-size: 1.1rem; margin-bottom: 8px; font-weight: 700; }
+        .feature p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* How it works */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        .step-num {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .step-text h3 { font-size: 1.05rem; margin-bottom: 4px; }
+        .step-text p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Use cases */
+        .usecases {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .usecase {
+            background: var(--surface);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .usecase-title { font-weight: 700; margin-bottom: 6px; }
+        .usecase p { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* Pricing */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .pricing-card {
+            background: var(--surface);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+        }
+        .pricing-card.featured {
+            border-color: var(--primary);
+            position: relative;
+        }
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .pricing-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 16px 0;
+        }
+        .pricing-price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin: 20px 0;
+        }
+        .pricing-features li {
+            padding: 6px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .pricing-features li::before {
+            content: '✓ ';
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .pricing-cta {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .pricing-cta-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .pricing-cta-secondary {
+            background: var(--surface-light);
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* CTA */
+        .final-cta {
+            text-align: center;
+            padding: 80px 0;
+            background: var(--surface);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .final-cta h2 { margin-bottom: 16px; }
+        .final-cta p { color: var(--text-muted); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+        /* Footer */
+        .footer {
+            padding: 24px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .footer a { color: var(--text-muted); text-decoration: none; }
+        .footer a:hover { color: var(--text); }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-sub { font-size: 1rem; }
+            .features, .usecases, .pricing-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#" class="logo">Start <span>OpenClaw</span></a>
+                <a href="mailto:vladyslav.odynets@gmail.com" class="nav-cta">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-badge">AI Assistant Setup Service</div>
+            <h1>Your own AI assistant.<br>On <em>your</em> phone. 24/7.</h1>
+            <p class="hero-sub">I'll set up OpenClaw for you — a personal AI that lives in WhatsApp, Telegram, or Signal. It reads, writes, remembers, and works while you sleep.</p>
+            <a href="mailto:vladyslav.odynets@gmail.com?subject=OpenClaw Setup" class="hero-cta">Get Started — €299</a>
+            <p class="hero-note">One-time setup. Running in 48 hours.</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2>What You Get</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">💬</div>
+                    <h3>Works Where You Are</h3>
+                    <p>Chat with your AI on WhatsApp, Telegram, or Signal. No new apps. Just message it like a person.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🧠</div>
+                    <h3>It Remembers Everything</h3>
+                    <p>Your AI builds long-term memory. It knows your preferences, your projects, your context. No repeating yourself.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Private & Yours</h3>
+                    <p>Runs on your own server. Your data stays yours. No third-party platform reading your conversations.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Always On</h3>
+                    <p>Your AI runs 24/7 on a cloud server. It can check things, send reminders, and work proactively even when you're offline.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Speaks Any Language</h3>
+                    <p>Powered by Claude or GPT. Understands and replies in any language. Voice messages included.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Extensible</h3>
+                    <p>Web search, file reading, image understanding, code execution — your AI can do more than just chat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--surface);">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <h3>Quick Call</h3>
+                        <p>15-minute call to understand what you need. Which messenger, what AI model, any specific use cases.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <h3>I Build It</h3>
+                        <p>I set up the server, configure OpenClaw, connect your messenger, and customize the AI personality and tools.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <h3>You Start Chatting</h3>
+                        <p>Within 48 hours you have a working AI assistant on your phone. I walk you through everything.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-text">
+                        <h3>Ongoing Support</h3>
+                        <p>14 days of free support after setup. Questions, tweaks, adjustments — I've got you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>Who Is This For</h2>
+            <div class="usecases">
+                <div class="usecase">
+                    <div class="usecase-title">Founders & CEOs</div>
+                    <p>An AI chief of staff that drafts emails, summarizes docs, tracks decisions, and never forgets context.</p>
+                </div>
+                <div class="usecase">
+                    <div class="usecase-title">Freelancers & Consultants</div>
+                    <p>Automate client communication, research, proposals, and admin work. Focus on billable hours.</p>
+                </div>
+                <div class="usecase">
+                    <div class="usecase-title">Busy Professionals</div>
+                    <p>A personal assistant that manages your calendar awareness, reminds you of things, and helps you think.</p>
+                </div>
+                <div class="usecase">
+                    <div class="usecase-title">Teams</div>
+                    <p>Shared AI in a group chat. Meeting summaries, action items, knowledge base, instant answers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--surface);">
+        <div class="container">
+            <h2>Pricing</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card featured">
+                    <h3>Standard Setup</h3>
+                    <div class="pricing-price">€299</div>
+                    <ul class="pricing-features">
+                        <li>OpenClaw installed on cloud server</li>
+                        <li>1 messenger connected (WhatsApp / Telegram / Signal)</li>
+                        <li>AI model configured (Claude or GPT)</li>
+                        <li>Custom personality & system prompt</li>
+                        <li>Web search & file tools enabled</li>
+                        <li>Voice message support</li>
+                        <li>14 days free support</li>
+                    </ul>
+                    <a href="mailto:vladyslav.odynets@gmail.com?subject=OpenClaw Standard Setup" class="pricing-cta pricing-cta-primary">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Pro Setup</h3>
+                    <div class="pricing-price">€599</div>
+                    <ul class="pricing-features">
+                        <li>Everything in Standard</li>
+                        <li>Multiple messengers connected</li>
+                        <li>Multiple AI agents (different personas)</li>
+                        <li>Custom integrations (email, calendar)</li>
+                        <li>Scheduled tasks & automations</li>
+                        <li>Team/group chat configuration</li>
+                        <li>30 days free support</li>
+                    </ul>
+                    <a href="mailto:vladyslav.odynets@gmail.com?subject=OpenClaw Pro Setup" class="pricing-cta pricing-cta-secondary">Get Started</a>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 24px; color: var(--text-muted); font-size: 0.85rem;">
+                Server hosting (~€5-10/month) and AI API costs (varies by usage) are separate.<br>
+                I'll help you choose the most cost-effective setup.
+            </p>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to get your AI assistant?</h2>
+            <p>Drop me a message. I'll have you up and running within 48 hours.</p>
+            <a href="mailto:vladyslav.odynets@gmail.com?subject=OpenClaw Setup" class="hero-cta">Get Started</a>
+            <div style="margin-top: 24px;">
+                <a href="https://x.com/Vlod11C" target="_blank" style="color: var(--text-muted); text-decoration: none; margin: 0 12px;">𝕏 @Vlod11C</a>
+                <a href="https://linkedin.com/in/vlod" target="_blank" style="color: var(--text-muted); text-decoration: none; margin: 0 12px;">LinkedIn</a>
+                <a href="https://vlod11.github.io" target="_blank" style="color: var(--text-muted); text-decoration: none; margin: 0 12px;">Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 <a href="https://vlod11.github.io">Vladyslav Odynets</a>. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
