@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--tg-theme-bg-color, #1a1a2e);
+    color: var(--tg-theme-text-color, #eee);
+    padding: 16px;
+    min-height: 100vh;
+  }
+  
+  .message-card {
+    background: var(--tg-theme-secondary-bg-color, #16213e);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    font-size: 18px;
+    line-height: 1.7;
+    word-wrap: break-word;
+  }
+  
+  .message-card p {
+    margin-bottom: 8px;
+  }
+  
+  .message-card p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .word {
+    display: inline;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.15s;
+  }
+  
+  .word:active {
+    background: var(--tg-theme-button-color, #5288c1);
+    color: var(--tg-theme-button-text-color, #fff);
+  }
+  
+  .hint {
+    text-align: center;
+    color: var(--tg-theme-hint-color, #888);
+    font-size: 13px;
+    margin-top: 16px;
+  }
+  
+  .translate-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 16px;
+    border: none;
+    border-radius: 12px;
+    background: var(--tg-theme-button-color, #5288c1);
+    color: var(--tg-theme-button-text-color, #fff);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .translate-btn:active {
+    opacity: 0.8;
+  }
+  
+  .translation {
+    background: var(--tg-theme-secondary-bg-color, #16213e);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 1.6;
+    display: none;
+    border-left: 3px solid var(--tg-theme-button-color, #5288c1);
+  }
+  
+  .loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--tg-theme-hint-color, #888);
+    font-size: 16px;
+  }
+  
+  .copied-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--tg-theme-button-color, #5288c1);
+    color: var(--tg-theme-button-text-color, #fff);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  
+  .copied-toast.show {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+<div id="content" class="loading">Loading...</div>
+<div id="toast" class="copied-toast">Copied!</div>
+
+<script>
+const tg = window.Telegram.WebApp;
+tg.ready();
+tg.expand();
+
+// Get text from URL hash (base64 encoded, split into chunks via params)
+const params = new URLSearchParams(window.location.search);
+let text = '';
+
+try {
+  // Text is passed as base64 in the 't' parameter
+  const encoded = params.get('t');
+  if (encoded) {
+    text = decodeURIComponent(atob(encoded));
+  }
+} catch(e) {
+  console.error('Failed to decode text:', e);
+}
+
+if (text) {
+  renderMessage(text);
+} else {
+  document.getElementById('content').textContent = 'No message to display';
+}
+
+function renderMessage(text) {
+  // Clean markdown
+  const clean = text
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/_(.+?)_/g, '<em>$1</em>');
+  
+  // Split into paragraphs
+  const paragraphs = clean.split('\n').filter(p => p.trim());
+  
+  let html = '<div class="message-card">';
+  for (const p of paragraphs) {
+    // Wrap each word in a span for tapping
+    const wrapped = p.replace(/(\S+)/g, '<span class="word">$1</span>');
+    html += '<p>' + wrapped + '</p>';
+  }
+  html += '</div>';
+  html += '<div class="hint">Tap a word to copy it</div>';
+  
+  document.getElementById('content').innerHTML = html;
+  
+  // Word tap handler
+  document.querySelectorAll('.word').forEach(el => {
+    el.addEventListener('click', function() {
+      const word = this.textContent.replace(/[.,!?;:"""„]/g, '').trim();
+      if (word) {
+        navigator.clipboard.writeText(word).catch(() => {});
+        showToast('Copied: ' + word);
+      }
+    });
+  });
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 1500);
+}
+</script>
+</body>
+</html>
